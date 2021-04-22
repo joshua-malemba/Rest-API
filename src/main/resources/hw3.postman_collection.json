@@ -1,0 +1,1557 @@
+{
+	"info": {
+		"_postman_id": "2e3568e6-9da9-40f7-ab3a-2a48bb273db1",
+		"name": "HW3",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "GET /convenors (200)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status test\", function(){\r",
+							"    pm.response.to.have.status(200);\r",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/convenors",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"convenors"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET /convenors (404) - convenor repo must be empty",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status test\", function(){\r",
+							"    pm.response.to.have.status(404);\r",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/convenors",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"convenors"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET /convenors with ID Parameters (404)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status test\", function(){\r",
+							"    pm.response.to.have.status(404);\r",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/convenors/:id",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"convenors",
+						":id"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": "6"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET /convenors with ID Parameters (200)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status test\", function(){\r",
+							"    pm.response.to.have.status(200);\r",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/convenors/:id",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"convenors",
+						":id"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "3",
+							"disabled": true
+						}
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": "3"
+						}
+					]
+				},
+				"description": "Get A Convenor By ID"
+			},
+			"response": []
+		},
+		{
+			"name": "GET /convenor with Path Variables (200)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status test\", function(){\r",
+							"    pm.response.to.have.status(200);\r",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/convenors/:id/modules",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"convenors",
+						":id",
+						"modules"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "5/:modules",
+							"disabled": true
+						}
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": "3"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET /convenor with Path Variables (404)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status test\", function(){\r",
+							"    pm.response.to.have.status(404);\r",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/convenors/:id/modules",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"convenors",
+						":id",
+						"modules"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": "5"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST /convenors (201)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status test\", function(){\r",
+							"    pm.response.to.have.status(201);\r",
+							"    pm.response.to.have.body;\r",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": 10,\r\n    \"name\": \"John Malemba\",\r\n    \"position\": \"PROFESSOR\",\r\n    \"modules\": [\r\n        {\r\n            \"code\": \"CO2103\",\r\n            \"title\": \"Software Architecture\",\r\n            \"level\": 2,\r\n            \"optional\": false,\r\n            \"sessions\": [\r\n                {\r\n                    \"id\": 1,\r\n                    \"topic\": \"REST APIs\",\r\n                    \"datetime\": \"2021-02-24T12:10:00.000+00:00\",\r\n                    \"duration\": 2\r\n                }\r\n            ]\r\n        }\r\n    ]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/convenors/:id",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"convenors",
+						":id"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": "10"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST /convenors (409)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status test\", function(){\r",
+							"    pm.response.to.have.status(409);\r",
+							"    pm.response.to.have.body;\r",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n        \"id\": 3,\r\n        \"name\": \"Jan Ringert\",\r\n        \"position\": \"PROFESSOR\",\r\n        \"modules\": [\r\n            {\r\n                \"code\": \"CO2103\",\r\n                \"title\": \"Software Architecture\",\r\n                \"level\": 2,\r\n                \"optional\": false,\r\n                \"sessions\": [\r\n                    {\r\n                        \"id\": 1,\r\n                        \"topic\": \"REST APIs\",\r\n                        \"datetime\": \"2021-02-24T12:00:00.000+00:00\",\r\n                        \"duration\": 2\r\n                    }\r\n                ]\r\n            }\r\n        ]\r\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/convenors/:id",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"convenors",
+						":id"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": "3"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PUT /convenors (200)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status test\", function(){\r",
+							"    pm.response.to.have.status(200);\r",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": 3,\r\n    \"name\": \"Reza Mohammed Juniorrrrrr\",\r\n    \"position\": \"PROFESSOR\",\r\n    \"modules\": [\r\n        {\r\n            \"code\": \"CO2103\",\r\n            \"title\": \"Software Architecture NEW\",\r\n            \"level\": 2,\r\n            \"optional\": true,\r\n            \"sessions\": [\r\n                {\r\n                    \"id\": 1,\r\n                    \"topic\": \"REST APIs\",\r\n                    \"datetime\": \"2021-02-24T12:10:00.000+00:00\",\r\n                    \"duration\": 2\r\n                }\r\n            ]\r\n        }\r\n    ]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/convenors/:id",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"convenors",
+						":id"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": "3"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PUT /convenors (404)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status test\", function(){\r",
+							"    pm.response.to.have.status(404);\r",
+							"    pm.response.to.have.body;\r",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n        \"id\": 12,\r\n        \"name\": \"Jan Ringert\",\r\n        \"position\": \"PROFESSOR\",\r\n        \"modules\": [\r\n            {\r\n                \"code\": \"CO2103\",\r\n                \"title\": \"Software Architecture\",\r\n                \"level\": 2,\r\n                \"optional\": false,\r\n                \"sessions\": [\r\n                    {\r\n                        \"id\": 1,\r\n                        \"topic\": \"REST APIs\",\r\n                        \"datetime\": \"2021-02-24T12:00:00.000+00:00\",\r\n                        \"duration\": 2\r\n                    }\r\n                ]\r\n            }\r\n        ]\r\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/convenors/:id",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"convenors",
+						":id"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": "12"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DEL /convenors with Paramater (200)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status test\", function(){\r",
+							"    pm.response.to.have.status(200);\r",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/convenors/:id",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"convenors",
+						":id"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": "3"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DEL /convenors with Paramater (404) Copy",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status test\", function(){\r",
+							"    pm.response.to.have.status(404);\r",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/convenors/:id",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"convenors",
+						":id"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": "12"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET /modules (200)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status test\", function(){\r",
+							"    pm.response.to.have.status(200);\r",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/modules",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"modules"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET /modules (404)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status test\", function(){\r",
+							"    pm.response.to.have.status(404);\r",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/modules",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"modules"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET /modules with Code Path Variable (200)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status test\", function(){\r",
+							"    pm.response.to.have.status(200);\r",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/modules/:code",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"modules",
+						":code"
+					],
+					"variable": [
+						{
+							"key": "code",
+							"value": "CO2103"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET /modules with Code Path Variable (404)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status test\", function(){\r",
+							"    pm.response.to.have.status(404);\r",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/modules/:code",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"modules",
+						":code"
+					],
+					"variable": [
+						{
+							"key": "code",
+							"value": "CO2104"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET /modules with Code Path Variables and Sessions (200)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status test\", function(){\r",
+							"    pm.response.to.have.status(200);\r",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/modules/:code/sessions",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"modules",
+						":code",
+						"sessions"
+					],
+					"variable": [
+						{
+							"key": "code",
+							"value": "CO3095"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET /modules with Code Path Variables and Sessions (404)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status test\", function(){\r",
+							"    pm.response.to.have.status(404);\r",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/modules/:code/sessions",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"modules",
+						":code",
+						"sessions"
+					],
+					"variable": [
+						{
+							"key": "code",
+							"value": "CO3096"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET /modules with Code Path Variables and Session ID (200)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status test\", function(){\r",
+							"    pm.response.to.have.status(200);\r",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/modules/:code/sessions/:id",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"modules",
+						":code",
+						"sessions",
+						":id"
+					],
+					"variable": [
+						{
+							"key": "code",
+							"value": "CO3095"
+						},
+						{
+							"key": "id",
+							"value": "5"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET /modules with Code Path Variables and Session ID  (404)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status test\", function(){\r",
+							"    pm.response.to.have.status(404);\r",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/modules/:code/sessions/:id",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"modules",
+						":code",
+						"sessions",
+						":id"
+					],
+					"variable": [
+						{
+							"key": "code",
+							"value": "CO3096"
+						},
+						{
+							"key": "id",
+							"value": "12"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST /modules with Code Path Variable (201)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status test\", function(){\r",
+							"    pm.response.to.have.status(201);\r",
+							"    pm.response.to.have.body;\r",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"code\": \"CO1008\",\r\n    \"title\": \"Programming Fundamentals\",\r\n    \"level\": 3,\r\n    \"optional\": true,\r\n    \"sessions\": [\r\n        {\r\n            \"id\": 6,\r\n            \"topic\": \"Functions\",\r\n            \"datetime\": \"2021-02-26T14:00:00.000+00:00\",\r\n            \"duration\": 2\r\n        }\r\n    ]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/modules/:code",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"modules",
+						":code"
+					],
+					"variable": [
+						{
+							"key": "code",
+							"value": "CO1008"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST /modules with Code Path Variable (409)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status test\", function(){\r",
+							"    pm.response.to.have.status(409);\r",
+							"    pm.response.to.have.body;\r",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"code\": \"CO1008\",\r\n    \"title\": \"Programming Fundamentals\",\r\n    \"level\": 3,\r\n    \"optional\": true,\r\n    \"sessions\": [\r\n        {\r\n            \"id\": 6,\r\n            \"topic\": \"Functions\",\r\n            \"datetime\": \"2021-02-26T14:00:00.000+00:00\",\r\n            \"duration\": 2\r\n        }\r\n    ]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/modules/:code",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"modules",
+						":code"
+					],
+					"variable": [
+						{
+							"key": "code",
+							"value": "CO1008"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST /modules with Code Path Variable and Sessions Parameter(201)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status test\", function(){\r",
+							"    pm.response.to.have.status(201);\r",
+							"    pm.response.to.have.body;\r",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n                \"id\": 5,\r\n                \"topic\": \"RESTo APIs\",\r\n                \"datetime\": \"2021-02-25T12:00:00.000+00:00\",\r\n                \"duration\": 2\r\n            }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/modules/:code/sessions",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"modules",
+						":code",
+						"sessions"
+					],
+					"variable": [
+						{
+							"key": "code",
+							"value": "CO2103"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST /modules with Code Path Variable and Sessions Parameter(409)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status test\", function(){\r",
+							"    pm.response.to.have.status(409);\r",
+							"    pm.response.to.have.body;\r",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n                \"id\": 5,\r\n                \"topic\": \"RESTo APIs\",\r\n                \"datetime\": \"2021-02-25T12:00:00.000+00:00\",\r\n                \"duration\": 2\r\n            }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/modules/:code/sessions",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"modules",
+						":code",
+						"sessions"
+					],
+					"variable": [
+						{
+							"key": "code",
+							"value": "CO2103"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PATCH /modules with Code Path Variable (200)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status test\", function(){\r",
+							"    pm.response.to.have.status(200);\r",
+							"    pm.response.to.have.body;\r",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"code\": \"CO3095\",\r\n    \"title\": \"Software Quality NEW\",\r\n    \"level\": 3,\r\n    \"optional\": true,\r\n    \"sessions\": [\r\n        {\r\n            \"id\": 2,\r\n            \"topic\": \"Unit Testing\",\r\n            \"datetime\": \"2021-02-26T14:00:00.000+00:00\",\r\n            \"duration\": 2\r\n        }\r\n    ]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/modules/:code",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"modules",
+						":code"
+					],
+					"variable": [
+						{
+							"key": "code",
+							"value": "CO3095"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PATCH /modules with Code Path Variable (404)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status test\", function(){\r",
+							"    pm.response.to.have.status(404);\r",
+							"    pm.response.to.have.body;\r",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"code\": \"CO3095\",\r\n    \"title\": \"Software Quality NEW\",\r\n    \"level\": 3,\r\n    \"optional\": true,\r\n    \"sessions\": [\r\n        {\r\n            \"id\": 2,\r\n            \"topic\": \"Unit Testing\",\r\n            \"datetime\": \"2021-02-26T14:00:00.000+00:00\",\r\n            \"duration\": 2\r\n        }\r\n    ]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/modules/:code",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"modules",
+						":code"
+					],
+					"variable": [
+						{
+							"key": "code",
+							"value": "CO3097"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DEL /modules With Path Variables",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status test\", function(){\r",
+							"    pm.response.to.have.status(200);\r",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/modules/:code",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"modules",
+						":code"
+					],
+					"variable": [
+						{
+							"key": "code",
+							"value": "CO2103"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DEL /modules With Path Variables (404)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status test\", function(){\r",
+							"    pm.response.to.have.status(200);\r",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/modules/:code",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"modules",
+						":code"
+					],
+					"variable": [
+						{
+							"key": "code",
+							"value": "CO2103"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PUT /modules with Session Path Variables (200)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status test\", function(){\r",
+							"    pm.response.to.have.status(200);\r",
+							"    pm.response.to.have.body;\r",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "\r\n        {\r\n            \"id\": 2,\r\n            \"topic\": \"Unit Testing NEW\",\r\n            \"datetime\": \"2021-02-26T14:00:00.000+00:00\",\r\n            \"duration\": 2\r\n        }\r\n  ",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/modules/:code/sessions/:id",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"modules",
+						":code",
+						"sessions",
+						":id"
+					],
+					"variable": [
+						{
+							"key": "code",
+							"value": "CO3095"
+						},
+						{
+							"key": "id",
+							"value": "2"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PUT /modules with Session Path Variables (404)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status test\", function(){\r",
+							"    pm.response.to.have.status(404);\r",
+							"    pm.response.to.have.body;\r",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "\r\n        {\r\n            \"id\": 4,\r\n            \"topic\": \"Unit Testing NEW\",\r\n            \"datetime\": \"2021-02-26T14:00:00.000+00:00\",\r\n            \"duration\": 2\r\n        }\r\n  ",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/modules/:code/sessions/:id",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"modules",
+						":code",
+						"sessions",
+						":id"
+					],
+					"variable": [
+						{
+							"key": "code",
+							"value": "CO3095"
+						},
+						{
+							"key": "id",
+							"value": "4"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DEL /modules with Session Path Variable (200)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status test\", function(){\r",
+							"    pm.response.to.have.status(200);\r",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/modules/:code/sessions/:id",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"modules",
+						":code",
+						"sessions",
+						":id"
+					],
+					"variable": [
+						{
+							"key": "code",
+							"value": "CO3095"
+						},
+						{
+							"key": "id",
+							"value": "2"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DEL /modules with Session Path Variable (404)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status test\", function(){\r",
+							"    pm.response.to.have.status(404);\r",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/modules/:code/sessions/:id",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"modules",
+						":code",
+						"sessions",
+						":id"
+					],
+					"variable": [
+						{
+							"key": "code",
+							"value": "CO3095"
+						},
+						{
+							"key": "id",
+							"value": "4"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET /session with Session Path Variable and Module Code Path Variable (200)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status test\", function(){\r",
+							"    pm.response.to.have.status(200);\r",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/sessions/:id/:code",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"sessions",
+						":id",
+						":code"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": "3"
+						},
+						{
+							"key": "code",
+							"value": "CO2103"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET /session with Session Path Variable and Module Code Path Variable (404)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status test\", function(){\r",
+							"    pm.response.to.have.status(404);\r",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/sessions/:id/:code",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"sessions",
+						":id",
+						":code"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": "3"
+						},
+						{
+							"key": "code",
+							"value": "CO2103"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DEL /sessions (200)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status test\", function(){\r",
+							"    pm.response.to.have.status(200);\r",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/sessions",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"sessions"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DEL /sessions (404)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status test\", function(){\r",
+							"    pm.response.to.have.status(404);\r",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/sessions",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"sessions"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

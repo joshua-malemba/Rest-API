@@ -1,0 +1,712 @@
+openapi: 3.0.0
+info:
+  title: HW3
+  contact: {}
+  version: '1.0'
+servers:
+- url: http://localhost:8080
+  variables: {}
+paths:
+  /convenors:
+    get:
+      tags:
+      - Misc
+      summary: GET /convenors (200)
+      operationId: GET/convenors(200)
+      parameters: []
+      responses:
+        200:
+          description: 'get all convenors'
+      deprecated: false
+  /convenors/{id}:
+    get:
+      tags:
+      - Misc
+      summary: GET /convenors with ID Parameters (200)
+      parameters:
+      - name: id
+        in: path
+        description: 'Convenor With ID Found'
+        required: true
+        style: simple
+        schema:
+          type: integer
+          format: int32
+          example: 6
+      responses:
+	200: 
+	  description: 'Convenor found'
+        404:
+          description: 'Convenor Not Found'
+      deprecated: false
+    post:
+      tags:
+      - Misc
+      summary: POST /convenors (201)
+      parameters:
+      - name: id
+        in: path
+        description: 'Create A Convenor'
+        required: true
+        style: simple
+        schema:
+          type: integer
+          format: int32
+          example: 10
+      requestBody:
+        description: 'Convenor'
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Convenor'
+            example:
+              id: 10
+              name: John Malemba
+              position: PROFESSOR
+              modules:
+              - code: CO2103
+                title: Software Architecture
+                level: 2
+                optional: false
+                sessions:
+                - id: 1
+                  topic: REST APIs
+                  datetime: 2021-02-24T12:10:00+00:00
+                  duration: 2
+        required: true
+      responses:
+        201:
+          description: 'Convenor created successfully'
+	409: 
+	  description: 'Http Conflict'
+	  content: 
+            application/json: 
+              schema: 
+                $ref: '#/components/schemas/ErrorInfo 
+              examples: 
+	          value: 
+		    message: "Convenor alrealdy exists"
+      deprecated: false
+
+    put:
+      tags:
+      - Misc
+      summary: PUT /convenors (200)
+      parameters:
+      - name: id
+        in: path
+        description: ''
+        required: true
+        style: simple
+        schema:
+          type: integer
+          format: int32
+          example: 3
+      requestBody:
+        description: 'Convenor'
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Convenor'
+            example:
+              id: 3
+              name: Reza Mohammed Juniorrrrrr
+              position: PROFESSOR
+              modules:
+              - code: CO2103
+                title: Software Architecture NEW
+                level: 2
+                optional: true
+                sessions:
+                - id: 1
+                  topic: REST APIs
+                  datetime: 2021-02-24T12:10:00+00:00
+                  duration: 2
+        required: true
+      responses:
+        200:
+          description: 'Convenor successfully updated'
+	404: 
+	  description: 'Not Found'
+	  content: 
+            application/json: 
+              schema: 
+                $ref: '#/components/schemas/ErrorInfo 
+              examples: 
+	          value: 
+		    message: "Convenor does not exist"
+	
+      deprecated: false
+    delete:
+      tags:
+      - Misc
+      summary: DEL /convenors with Paramater (200)
+      parameters:
+      - name: id
+        in: path
+        description: 'delete a given convenor'
+        required: true
+        style: simple
+        schema:
+          type: integer
+          format: int32
+          example: 3
+      responses:
+        200:
+          description: 'convenor delete successfully'
+	404: 
+	  description: 'convenor with given id cannot be found'
+	  content: 
+            application/json: 
+              schema: 
+                $ref: '#/components/schemas/ErrorInfo 
+              examples: 
+	          value: 
+		    message: "Convenor with id does not exist"
+          headers: {}
+      deprecated: false
+  /convenors/{id}/modules:
+    get:
+      tags:
+      - Misc
+      summary: GET /convenor with Path Variables (200)
+      parameters:
+      - name: id
+        in: path
+        description: 'get modules of a specific convenor'
+        required: true
+        style: simple
+        schema:
+          type: integer
+          format: int32
+          example: 3
+      responses:
+        200:
+          description: 'modules of convenor successfully found'
+	404: 
+	  description: 'Not Found'
+	  content: 
+            application/json: 
+              schema: 
+                $ref: '#/components/schemas/ErrorInfo 
+              examples: 
+	          value: 
+		    message: "Convenor with id does not exist"
+      deprecated: false
+  /modules:
+    get:
+      tags:
+      - Misc
+      summary: GET /modules (200)
+      responses:
+        200:
+          description: successfully returns all modules'
+	404: 
+	  description: module repository is empty
+	  content: 
+            application/json: 
+              schema: 
+                $ref: '#/components/schemas/ErrorInfo 
+              examples: 
+	          value: 
+		    message: "No Modules Found"
+      deprecated: false
+  /modules/{code}:
+    get:
+      tags:
+      - Misc
+      summary: GET /modules with Code Path Variable (200)
+      parameters:
+      - name: code
+        in: path
+        description: 'get specific module with given code'
+        required: true
+        style: simple
+        schema:
+          type: string
+          example: CO2103
+      responses:
+        200:
+          description: 'returns module CO2103'
+	404:
+	  description: 'module doesnt exist'
+	  content: 
+            application/json: 
+              schema: 
+                $ref: '#/components/schemas/ErrorInfo 
+              examples: 
+	          value: 
+		    message: "Module with code not found"
+      deprecated: false
+    post:
+      tags:
+      - Misc
+      summary: POST /modules with Code Path Variable (201)
+      parameters:
+      - name: code
+        in: path
+        description: 'Creates module with given code variable'
+        required: true
+        style: simple
+        schema:
+          type: string
+          example: CO1008
+      requestBody:
+        description: 'Module object'
+        content:
+          application/json:
+            schema:
+              $ref: Module
+            example:
+              code: CO1008
+              title: Programming Fundamentals
+              level: 3
+              optional: true
+              sessions:
+              - id: 6
+                topic: Functions
+                datetime: 2021-02-26T14:00:00+00:00
+                duration: 2
+        required: true
+      responses:
+        201:
+          description: 'creates a new module with a given code'
+	409:
+ 	  description: 'Creation conflict'
+	  content: 
+            application/json: 
+              schema: 
+                $ref: '#/components/schemas/ErrorInfo 
+              examples: 
+	          value: 
+		    message: "Module with the code already exists"
+      deprecated: false
+    patch:
+      tags:
+      - Misc
+      summary: PATCH /modules with Code Path Variable (200)
+      parameters:
+      - name: code
+        in: path
+        description: 'updates module by a given code'
+        required: true
+        style: simple
+        schema:
+          type: string
+          example: CO3095
+      requestBody:
+        description: 'Module object'
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Module'
+            example:
+              code: CO3095
+              title: Software Quality NEW
+              level: 3
+              optional: true
+              sessions:
+              - id: 2
+                topic: Unit Testing
+                datetime: 2021-02-26T14:00:00+00:00
+                duration: 2
+        required: true
+      responses:
+        200:
+          description: 'successfully updates module'
+        404: 
+	  description: 'Module doesn't exist'
+	  content: 
+            application/json: 
+              schema: 
+                $ref: '#/components/schemas/ErrorInfo 
+              examples: 
+	          value: 
+		    message: "Module with the code does not exist"
+      deprecated: false
+    delete:
+      tags:
+      - Misc
+      summary: DEL /modules With Path Variables
+      parameters:
+      - name: code
+        in: path
+        description: 'delete given module'
+        required: true
+        style: simple
+        schema:
+          type: string
+          example: CO2103
+      responses:
+        200:
+          description: 'successfully deleted module'
+          headers: {}
+        404:
+	  description: 'module does not exist'
+	  content: 
+            application/json: 
+              schema: 
+                $ref: '#/components/schemas/ErrorInfo 
+              examples: 
+	          value: 
+		    message: "Module with the code does not exist"
+      deprecated: false
+  /modules/{code}/sessions:
+    get:
+      tags:
+      - Misc
+      summary: GET /modules with Code Path Variables and Sessions (200)
+      parameters:
+      - name: code
+        in: path
+        description: 'returns all the scheduled sessions of a given module'
+        required: true
+        style: simple
+        schema:
+          type: string
+          example: CO3095
+      responses:
+        200:
+          description: 'successfully returns sessions of given module'
+	404: 
+	  description: 'module does not exist'
+	  content: 
+            application/json: 
+              schema: 
+                $ref: '#/components/schemas/ErrorInfo 
+              examples: 
+	          value: 
+		    message: "Module with the code does not exist"
+      deprecated: false
+    post:
+      tags:
+      - Misc
+      summary: POST /modules with Code Path Variable and Sessions Parameter(201)
+      parameters:
+      - name: code
+        in: path
+        description: 'create a new session in a given module'
+        required: true
+        style: simple
+        schema:
+          type: string
+          example: CO2103
+      requestBody:
+        description: 'Session object'
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Session'
+            example:
+              id: 5
+              topic: RESTo APIs
+              datetime: 2021-02-25T12:00:00+00:00
+              duration: 2
+        required: true
+      responses:
+        201:
+          description: 'session successfully created'
+	409:
+	  description: 'creation conflict'
+	  content: 
+            application/json: 
+              schema: 
+                $ref: '#/components/schemas/ErrorInfo 
+              examples: 
+	          value: 
+		    message: "Session with the id already exists"
+          headers: {}
+      deprecated: false
+  /modules/{code}/sessions/{id}:
+    get:
+      tags:
+      - Misc
+      summary: GET /modules with Code Path Variables and Session ID (200)
+      parameters:
+      - name: code
+        in: path
+        description: 'find a specific session scheduled for a given module '
+        required: true
+        style: simple
+        schema:
+          type: string
+          example: CO3095
+      - name: id
+        in: path
+        description: ''
+        required: true
+        style: simple
+        schema:
+          type: integer
+          format: int32
+          example: 5
+      responses:
+        200:
+          description: 'successfully found session in module'
+	404: 
+	  description: 'module not found'
+	  content: 
+            application/json: 
+              schema: 
+                $ref: '#/components/schemas/ErrorInfo 
+              examples: 
+	          value: 
+		    message: "Module with code not found"
+	404: 
+          description: 'session not found'
+	  content: 
+            application/json: 
+              schema: 
+                $ref: '#/components/schemas/ErrorInfo 
+              examples: 
+	          value: 
+		    message: "Session with id not found"
+      deprecated: false
+    put:
+      tags:
+      - Misc
+      summary: PUT /modules with Session Path Variables (200)
+      parameters:
+      - name: code
+        in: path
+        description: 'update session in given module'
+        required: true
+        style: simple
+        schema:
+          type: string
+          example: CO3095
+      - name: id
+        in: path
+        description: ''
+        required: true
+        style: simple
+        schema:
+          type: integer
+          format: int32
+          example: 2
+      requestBody:
+        description: 'Session object'
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Session'
+            example:
+              id: 2
+              topic: Unit Testing NEW
+              datetime: 2021-02-26T14:00:00+00:00
+              duration: 2
+        required: true
+      responses:
+        200:
+          description: 'successfully updated session in given module'
+	404: 
+	  description: 'module not found'
+	  content: 
+            application/json: 
+              schema: 
+                $ref: '#/components/schemas/ErrorInfo 
+              examples: 
+	          value: 
+		    message: "Module with code not found"
+	404: 
+	   description: 'session not found'
+	  content: 
+            application/json: 
+              schema: 
+                $ref: '#/components/schemas/ErrorInfo 
+              examples: 
+	          value: 
+		    message: "Session with id not found"
+      deprecated: false
+    delete:
+      tags:
+      - Misc
+      summary: DEL /modules with Session Path Variable (200)
+      parameters:
+      - name: code
+        in: path
+        description: 'delete session within a given module'
+        required: true
+        style: simple
+        schema:
+          type: string
+          example: CO3095
+      - name: id
+        in: path
+        description: ''
+        required: true
+        style: simple
+        schema:
+          type: integer
+          format: int32
+          example: 2
+      responses:
+        200:
+          description: 'successfully deleted session within module'
+	404:
+	  description: 'module not found'
+	  content: 
+            application/json: 
+              schema: 
+                $ref: '#/components/schemas/ErrorInfo 
+              examples: 
+	          value: 
+		    message: "Module with code not found"
+	 404:
+	   description: 'session not found'
+	   content: 
+             application/json: 
+               schema: 
+                 $ref: '#/components/schemas/ErrorInfo 
+               examples: 
+	           value: 
+		     message: "Session with id not found"
+      deprecated: false
+  /sessions/{id}/{code}:
+    get:
+      tags:
+      - Misc
+      summary: GET /session with Convenor ID Path Variable and Module Code Path Variable (200)
+      parameters:
+      - name: id
+        in: path
+        description: 'find a session with a given id, and the modules which corrrespond to it'
+        required: true
+        style: simple
+        schema:
+          type: integer
+          format: int32
+          example: 3
+      - name: code
+        in: path
+        description: ''
+        required: true
+        style: simple
+        schema:
+          type: string
+          example: CO2103
+      responses:
+        200:
+          description: 'successfully found sessions taught by given convenor, in a given module'
+	404: 
+	  description: 'convenor not found'
+	  content: 
+            application/json: 
+              schema: 
+                $ref: '#/components/schemas/ErrorInfo 
+              examples: 
+	          value: 
+		    message: "Convenor with the given id not found"
+	404:
+ 	   description: 'module not found'
+	   content: 
+             application/json: 
+               schema: 
+                 $ref: '#/components/schemas/ErrorInfo 
+               examples: 
+	           value: 
+		     message: "Module with code not found"
+      deprecated: false
+  /sessions:
+    delete:
+      tags:
+      - Misc
+      summary: DEL /sessions (200)
+      parameters: []
+      responses:
+        200:
+          description: 'delete all sessions'
+	404: 
+	  description: 'sessions not found'
+	  content: 
+            application/json: 
+              schema: 
+                $ref: '#/components/schemas/ErrorInfo 
+              examples: 
+	          value: 
+		    message: "There are no scheduled sessions!"
+      deprecated: false
+components:
+  schemas:
+    Convenor:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+        name:
+          type: string
+        position:
+          type: string
+        modules:
+          type: array
+          items:
+            $ref: '#/components/schemas/Module'
+          description: ''
+      example:
+        id: 10
+        name: John Malemba
+        position: PROFESSOR
+        modules:
+        - code: CO2103
+          title: Software Architecture
+          level: 2
+          optional: false
+          sessions:
+          - id: 1
+            topic: REST APIs
+            datetime: 2021-02-24T12:10:00+00:00
+            duration: 2
+    Module:
+      type: object
+      properties:
+        code:
+          type: string
+        title:
+          type: string
+        level:
+          type: integer
+          format: int32
+        optional:
+          type: boolean
+        sessions:
+          type: array
+          items:
+            $ref: '#/components/schemas/Session'
+          description: ''
+      example:
+        code: CO2103
+        title: Software Architecture
+        level: 2
+        optional: false
+        sessions:
+        - id: 1
+          topic: REST APIs
+          datetime: 2021-02-24T12:10:00+00:00
+          duration: 2
+    Session:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+        topic:
+          type: string
+        datetime:
+          type: string
+        duration:
+          type: integer
+          format: int32
+      example:
+        id: 1
+        topic: REST APIs
+        datetime: 2021-02-24T12:10:00+00:00
+        duration: 2
+    ErrorInfo:
+      type: object
+      properties:
+        message:
+          type: string
+tags:
+- name: Misc
+  description: ''
